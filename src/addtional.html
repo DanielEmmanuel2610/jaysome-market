@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Small Business Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(0);
+        }
+        33% {
+          transform: translateX(-100%);
+        }
+        66% {
+          transform: translateX(-200%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      .animate-slide {
+        animation: slide 12s infinite ease-in-out;
+      }
+    </style>
+  </head>
+  <body id="top" class="bg-white">
+    <header>
+      <!-- Navigation Bar -->
+      <nav
+        class="fixed top-0 w-full z-50 bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-md"
+      >
+        <div
+          class="container mx-auto flex justify-between items-center p-4 max-w-7xl"
+        >
+          <!-- Logo & Business Name -->
+          <div class="flex items-center space-x-3">
+            <img
+              src="https://via.placeholder.com/40"
+              alt="Logo"
+              class="w-10 h-10 rounded-full bg-white p-1"
+            />
+            <span class="text-xl font-bold select-none">My Business</span>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div
+            id="menu"
+            class="hidden md:flex space-x-6 text-sm font-medium select-none"
+          >
+            <a href="#home" class="hover:underline">Home</a>
+            <a href="#products" class="hover:underline">Products</a>
+            <a href="#services" class="hover:underline">Our Services</a>
+            <a href="#contact" class="hover:underline">Contact</a>
+            <a href="#faq" class="hover:underline">FAQ</a>
+          </div>
+
+          <!-- Mobile hamburger button -->
+          <button
+            id="menu-btn"
+            aria-label="Toggle menu"
+            class="md:hidden focus:outline-none focus:ring-2 focus:ring-white"
+          >
+            <svg
+              id="menu-open"
+              class="w-6 h-6 block"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              viewBox="0 0 24 24"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+            <svg
+              id="menu-close"
+              class="w-6 h-6 hidden"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              viewBox="0 0 24 24"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu (hidden by default) -->
+        <div
+          id="mobile-menu"
+          class="md:hidden bg-gradient-to-r from-green-500 to-blue-600 text-white hidden"
+        >
+          <a
+            href="#home"
+            class="block px-6 py-3 border-t border-white hover:bg-green-700"
+            >Home</a
+          >
+          <a
+            href="#products"
+            class="block px-6 py-3 border-t border-white hover:bg-green-700"
+            >Products</a
+          >
+          <a
+            href="#services"
+            class="block px-6 py-3 border-t border-white hover:bg-green-700"
+            >Our Services</a
+          >
+          <a
+            href="#contact"
+            class="block px-6 py-3 border-t border-white hover:bg-green-700"
+            >Contact</a
+          >
+          <a
+            href="#faq"
+            class="block px-6 py-3 border-t border-white hover:bg-green-700"
+            >FAQ</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen p-6 bg-blue-50 pt-24">
+      <h2 class="text-4xl font-bold text-blue-700 mb-4 text-center">
+        Welcome To Jaysome Market
+      </h2>
+
+      <!-- Image Slider -->
+      <div class="overflow-hidden relative h-64 sm:h-96 pt-4 max-w-7xl mx-auto">
+        <div class="flex w-[300%] animate-slide">
+          <img
+            src="https://via.placeholder.com/1200x400?text=Owner+1"
+            class="w-full object-cover"
+            alt="Owner 1"
+          />
+          <img
+            src="https://via.placeholder.com/1200x400?text=Owner+2"
+            class="w-full object-cover"
+            alt="Owner 2"
+          />
+          <img
+            src="https://via.placeholder.com/1200x400?text=Owner+3"
+            class="w-full object-cover"
+            alt="Owner 3"
+          />
+        </div>
+      </div>
+
+      <!-- Vision & Mission -->
+      <div class="max-w-4xl mx-auto py-10 px-4 text-center">
+        <h2 class="text-3xl font-bold text-blue-800 mb-6">Our Vision</h2>
+        <p class="text-lg text-gray-700 mb-10">
+          To become a leading provider of quality products that enrich lives and
+          create lasting value for our community.
+        </p>
+
+        <h2 class="text-3xl font-bold text-green-800 mb-6">Our Mission</h2>
+        <p class="text-lg text-gray-700">
+          We are committed to offering excellent customer service and
+          affordable, high-quality products to every customer, every time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="min-h-screen p-6 bg-green-50 pt-24">
+      <h2 class="text-3xl font-bold text-center text-green-700 mb-8">
+        We Give You The Best Choice You Need
+      </h2>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-7xl mx-auto"
+      >
+        <!-- Product Cards -->
+        <div
+          id="product1"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+        >
+          <img
+            src="https://via.placeholder.com/400x250?text=Product+1"
+            alt="Product 1"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-bold mb-2">Product 1</h3>
+            <a
+              href="product1.html"
+              class="text-blue-600 font-medium hover:underline"
+              >View Details</a
+            >
+          </div>
+        </div>
+
+        <div
+          id="product2"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+        >
+          <img
+            src="https://via.placeholder.com/400x250?text=Product+2"
+            alt="Product 2"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-bold mb-2">Product 2</h3>
+            <a
+              href="product2.html"
+              class="text-blue-600 font-medium hover:underline"
+              >View Details</a
+            >
+          </div>
+        </div>
+
+        <div
+          id="product3"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+        >
+          <img
+            src="https://via.placeholder.com/400x250?text=Product+3"
+            alt="Product 3"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-bold mb-2">Product 3</h3>
+            <a
+              href="product3.html"
+              class="text-blue-600 font-medium hover:underline"
+              >View Details</a
+            >
+          </div>
+        </div>
+
+        <div
+          id="product4"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+        >
+          <img
+            src="https://via.placeholder.com/400x250?text=Product+4"
+            alt="Product 4"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-bold mb-2">Product 4</h3>
+            <a
+              href="product4.html"
+              class="text-blue-600 font-medium hover:underline"
+              >View Details</a
+            >
+          </div>
+        </div>
+
+        <div
+          id="product5"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+        >
+          <img
+            src="https://via.placeholder.com/400x250?text=Product+5"
+            alt="Product 5"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-bold mb-2">Product 5</h3>
+            <a
+              href="product5.html"
+              class="text-blue-600 font-medium hover:underline"
+              >View Details</a
+            >
+          </div>
+        </div>
+
+        <div
+          id="product6"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+        >
+          <img
+            src="https://via.placeholder.com/400x250?text=Product+6"
+            alt="Product 6"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-bold mb-2">Product 6</h3>
+            <a
+              href="product6.html"
+              class="text-blue-600 font-medium hover:underline"
+              >View Details</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section id="services" class="min-h-screen p-6 bg-yellow-50 pt-24">
+      <h2 class="text-3xl font-bold text-center text-yellow-800 mb-10">
+        Our Services
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <h4 class="font-semibold text-lg mb-2">Affordable Products</h4>
+          <p class="text-gray-700">
+            Quality products at prices that won’t break the bank.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <h4 class="font-semibold text-lg mb-2">Expert Guidance</h4>
+          <p class="text-gray-700">
+            Friendly experts ready to help you pick the perfect product.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <h4 class="font-semibold text-lg mb-2">Customer Support</h4>
+          <p class="text-gray-700">
+            We’re here to assist you anytime you need us.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="min-h-screen p-6 bg-green-100 pt-24">
+      <h2 class="text-3xl font-bold text-center text-green-700 mb-8">
+        Contact Us
+      </h2>
+
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <form action="#" method="POST" class="space-y-6">
+          <div>
+            <label for="name" class="block font-medium text-gray-700 mb-1"
+              >Your Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full border border-gray-300 rounded-md p-2"
+              placeholder="Enter your name"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block font-medium text-gray-700 mb-1"
+              >Your Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full border border-gray-300 rounded-md p-2"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block font-medium text-gray-700 mb-1"
+              >Your Phone</label
+            >
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="w-full border border-gray-300 rounded-md p-2"
+              placeholder="Enter your phone number"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block font-medium text-gray-700 mb-1"
+              >Your Message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              class="w-full border border-gray-300 rounded-md p-2"
+              placeholder="Type your message here..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="min-h-screen p-6 bg-blue-200 pt-24">
+      <h2 class="text-3xl font-bold text-center text-blue-700 mb-10">
+        Frequently Asked Questions
+      </h2>
+
+      <div class="max-w-3xl mx-auto space-y-6">
+        <details class="border rounded-lg p-4 bg-white shadow">
+          <summary class="font-semibold cursor-pointer">
+            What is your return policy?
+          </summary>
+          <p class="mt-2 text-gray-700">
+            We accept returns within 30 days of purchase if the product is in
+            its original condition.
+          </p>
+        </details>
+
+        <details class="border rounded-lg p-4 bg-white shadow">
+          <summary class="font-semibold cursor-pointer">
+            Do you offer international shipping?
+          </summary>
+          <p class="mt-2 text-gray-700">
+            Yes, we ship worldwide. Shipping costs and times vary by location.
+          </p>
+        </details>
+
+        <details class="border rounded-lg p-4 bg-white shadow">
+          <summary class="font-semibold cursor-pointer">
+            How can I track my order?
+          </summary>
+          <p class="mt-2 text-gray-700">
+            Once your order ships, you’ll receive an email with tracking
+            details.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-200 p-6 text-center">
+      <p>© 2025 Jaysome Market. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const btn = document.getElementById("menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      const openIcon = document.getElementById("menu-open");
+      const closeIcon = document.getElementById("menu-close");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        openIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+      });
+
+      // Optional: close menu when a link is clicked (mobile)
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          openIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>

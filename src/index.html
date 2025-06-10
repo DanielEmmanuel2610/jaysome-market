@@ -1,0 +1,856 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaysome Market Website</title>
+   <link rel="stylesheet" href="./output.css">
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      @keyframes slide {
+    0% {
+      transform: translateX(0); /* Start at the first slide */
+    }
+    33.33% {
+      transform: translateX(-100%); /* Move to the second slide */
+    }
+    66.66% {
+      transform: translateX(-200%); /* Move to the third slide */
+    }
+    100% {
+      transform: translateX(0); /* Reset back to the first slide */
+    }
+  }
+
+  .animate-slide {
+    animation: slide 12s infinite; /* Loop the animation */
+  }
+      .active-dot {
+    background-color: white;
+  }
+
+ /* Slider Container */
+ .image-slider-container {
+    overflow: hidden;
+    position: relative;
+    height: 400px; /* Base height */
+  }
+
+  /* Responsive Heights */
+  @media (min-width: 640px) {
+    .image-slider-container {
+      height: 500px; /* Medium screens */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .image-slider-container {
+      height: 600px; /* Large screens */
+    }
+  }
+
+
+    </style>
+  </head>
+  <body id="top" class="bg-white">
+    <header>
+     <!-- Navigation Bar -->
+<nav class="top-0 w-full z-50 bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-md">
+  <div class="container mx-auto flex justify-between items-center p-4 max-w-7xl">
+    <!-- Logo & Business Name (Clickable) -->
+    <a href="#top" class="flex items-center space-x-3 cursor-pointer hover:scale-105 transition-transform">
+      <img
+        src="../IMAGES/IMG-20250515-WA0048.jpg"
+        alt="Logo"
+        class="w-32 sm:w-48 h-auto object-contain rounded-lg "
+      />
+      <span class="text-2xl font-bold select-none  text-white hover:text-green-300 transition-colors xl:text-5xl">JAYSOME MARKET</span>
+    </a>
+
+    <!-- Desktop Menu -->
+    <div id="menu" class="hidden md:flex space-x-6 md:text-sm xl:text-2xl font-medium select-none">
+      <a href="#home" class="hover:underline">Home</a> 
+      <a href="#products" class="hover:underline">Products</a>
+      <a href="#services" class="hover:underline">Our Services</a>
+      <a href="#contact" class="hover:underline">Contact</a>
+      <a href="#faq" class="hover:underline">FAQ</a>
+    </div>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      id="menu-btn"
+      aria-label="Toggle menu"
+      class="md:hidden focus:outline-none focus:ring-2 focus:ring-white"
+    >
+      <svg
+        id="menu-open"
+        class="w-6 h-6 block"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        viewBox="0 0 24 24"
+      >
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+      <svg
+        id="menu-close"
+        class="w-6 h-6 hidden"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        viewBox="0 0 24 24"
+      >
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu (Hidden by Default) -->
+  <div id="mobile-menu" class="md:hidden bg-gradient-to-r from-green-500 to-blue-600 text-white hidden">
+    <a href="#home" class="block px-6 py-3 border-t border-white hover:bg-green-700">Home</a>
+    <a href="#products" class="block px-6 py-3 border-t border-white hover:bg-green-700">Products</a>
+    <a href="#services" class="block px-6 py-3 border-t border-white hover:bg-green-700">Our Services</a>
+    <a href="#contact" class="block px-6 py-3 border-t border-white hover:bg-green-700">Contact</a>
+    <a href="#faq" class="block px-6 py-3 border-t border-white hover:bg-green-700">FAQ</a>
+  </div>
+
+  <!-- Notification -->
+  <div
+    id="nav-notification"
+    class="fixed bottom-8 right-8 mt-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg text-center hidden z-50 hidden"
+    style="min-width: 220px;"
+  >
+    🎉 Your order has been submitted successfully!
+  </div>
+</nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen p-6 bg-blue-200 pt-65">
+      <h2 class="text-4xl font-bold text-blue-700 mb-4 text-center">
+        Welcome To Jaysome Market
+      </h2>
+
+    <!-- Image Slider -->
+<div class="overflow-hidden relative h-[400px] sm:h-[500px] xl:h-full pt-4 max-w-7xl mx-auto">
+  <!-- Navigation Arrows -->
+  <button
+    id="prev-slide"
+    class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-75 transition"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  <button
+    id="next-slide"
+    class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-75 transition"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+  <!-- Slider Images -->
+  <div id="slider" class="flex transition-transform duration-500 ease-in-out">
+    <img
+      src="../IMAGES/IMG-20250515-WA0048.jpg"
+      class="w-full h-full object-cover"
+      alt="Owner 1"
+    />
+    <img
+      src="../IMAGES/IMG-20250515-WA0049.jpg"
+      class="w-full h-full object-cover"
+      alt="Owner 2"
+    />
+    <img
+      src="../IMAGES/IMG-20250515-WA0115.jpg"
+      class="w-full h-full object-cover"
+      alt="Owner 3"
+    />
+  </div>
+  <!-- Pagination Dots -->
+   <!-- absolute left-1/2 transform -translate-x-1/2 top-0 -->
+  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+    <span class="w-3 h-3 bg-white rounded-full cursor-pointer active-dot" data-index="0"></span>
+    <span class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer" data-index="1"></span>
+    <span class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer" data-index="2"></span>
+  </div>
+</div>
+
+
+      <!-- Vision & Mission -->
+      <div class="max-w-4xl mx-auto py-10 px-4 text-center">
+        <h2 class="text-3xl font-bold text-blue-800 mb-6">Our Vision</h2>
+        <p class="text-lg text-gray-700 mb-10">
+          To be leading heads of trusted Markets in africa in terms of selling quality eletrical home appliances products
+        </p>
+        <p class="text-lg text-gray-700 mb-7">
+          To be a great source and influencer in golden opportunties to african commonities so as to eradicate poverty
+        </p>
+        <p class="text-lg text-gray-700 mb-7">
+          To be leading head in promoting and marketing Best african brands, associated with home appliances to our communities
+        </p>
+
+        <h2 class="text-3xl font-bold text-green-800 mb-6">Our Mission</h2>
+        <p class="text-lg text-gray-700">
+          We are best Market in selling and Marketing Best electrical home appliances from trasted brands in the world.
+        </p>
+        <p class="text-lg text-gray-700">
+          we provide some opportunities skills to our beloved clients associated with productive home appliances, that we sell
+        </p>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="min-h-screen p-6 bg-green-50 pt-24">
+      <h2 class="text-3xl font-bold text-center text-green-700 mb-8">
+        We Give You The Best Choice You Need
+      </h2>
+        <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-7xl mx-auto"
+        >
+          <!-- Product Card -->
+          <div
+          id="product1"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+          >
+            <img
+              src="../IMAGES/IMG-20250515-WA0084.jpg"
+              alt="Product 1"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="text-lg font-bold mb-2">PMC PRESSURE COOKER</h3>
+              <a
+                href="product1.html"
+                class="text-blue-600 font-medium hover:underline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+      
+          <div
+          id="product2"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+          >
+            <img
+              src="../IMAGES/IMG-20250515-WA0078.jpg"
+              alt="Product 2"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="text-lg font-bold mb-2">EUROPE ONE PRESSURE COOKER</h3>
+              <a
+                href="product2.html"
+                class="text-blue-600 font-medium hover:underline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+          <div
+          id="product3"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+          >
+            <img
+              src="../IMAGES/IMG-20250515-WA0081.jpg"
+              alt="Product 3"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="text-lg font-bold mb-2">BRAVO PRESSURE COOKER</h3>
+              <a
+                href="product3.html"
+                class="text-blue-600 font-medium hover:underline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+          <div
+          id="product4"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+          >
+            <img
+              src="../IMAGES/IMG-20250515-WA0080.jpg"
+              alt="Product 4"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="text-lg font-bold mb-2">PMC BLENDER</h3>
+              <a
+                href="product4.html"
+                class="text-blue-600 font-medium hover:underline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+          <div
+          id="product5"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+          >
+            <img
+              src="../IMAGES/IMG-20250515-WA0075.jpg"
+              alt="Product 5"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="text-lg font-bold mb-2">PMC GAS COOKER</h3>
+              <a
+                href="product5.html"
+                class="text-blue-600 font-medium hover:underline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+          <div
+          id="product6"
+          class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs mx-auto"
+          >
+            <img
+              src="../IMAGES/IMG-20250515-WA0113.jpg"
+              alt="Product 6"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4 text-center">
+              <h3 class="text-lg font-bold mb-2">INBOX HEAVY BLENDER</h3>
+              <a
+                href="product6.html"
+                class="text-blue-600 font-medium hover:underline"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="text-2xl text-blue-500 mb-15 pt-10">
+          <p class="mb-10"> VISIT OUR INSTAGRAM TO SEE MORE PRODUCTS</p>
+          <a href="https://instagram.com/jaysomemarket" target="_blank" class="flex items-center text-red-500 hover:text-red-600 space-x-2 mb-5">
+            <svg class="w-6 h-6 fill-current  items-center" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.75 2C5.126 2 3 4.126 3 6.75v10.5C3 19.874 5.126 22 7.75 22h8.5C18.874 22 21 19.874 21 17.25V6.75C21 4.126 18.874 2 16.25 2h-8.5zM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5zm5.25-2.625a.875.875 0 1 1 0 1.75.875.875 0 0 1 0-1.75zM5.5 6.75a2.25 2.25 0 0 1 2.25-2.25h8.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-8.5a2.25 2.25 0 0 1-2.25-2.25V6.75z"/>
+            </svg>
+            Instagram
+          </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="min-h-screen p-6 bg-blue-500 pt-24">
+      <h2 class="text-3xl font-bold text-center text-yellow-800 mb-10">
+        Our Services
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <h4 class="font-semibold text-lg mb-2">Affordable Products</h4>
+          <p class="text-gray-700">
+            Quality products at prices that won’t break the bank.
+          </p>
+        </div>
+
+
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <h4 class="font-semibold text-lg mb-2">Expert Guidance</h4>
+          <p class="text-gray-700">
+            Friendly experts ready to help you pick the perfect product.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+          <h4 class="font-semibold text-lg mb-2">Customer Support</h4>
+          <p class="text-gray-700">
+            We’re here to assist you anytime you need us.
+          </p>
+        </div>
+            <!-- Service 1 -->
+            <div
+              class="bg-blue-50 p-6 rounded-xl shadow hover:shadow-lg transition"
+            >
+              <div class="text-green-600 text-4xl mb-4">🚚</div>
+              <h3 class="text-xl font-semibold mb-2">Fast Home Delivery</h3>
+              <p class="text-gray-700">
+                We deliver your products quickly and safely to your doorstep.
+              </p>
+            </div>
+
+            <!-- Service 2 -->
+            <div
+              class="bg-blue-50 p-6 rounded-xl shadow hover:shadow-lg transition"
+            >
+              <div class="text-green-600 text-4xl mb-4">💬</div>
+              <h3 class="text-xl font-semibold mb-2">Free Consultation</h3>
+              <p class="text-gray-700">
+                We help you choose the best product that suits your needs and
+                goals.
+              </p>
+            </div>
+
+            <!-- Service 3 -->
+            <div
+              class="bg-blue-50 p-6 rounded-xl shadow hover:shadow-lg transition"
+            >
+              <div class="text-green-600 text-4xl mb-4">💯</div>
+              <h3 class="text-xl font-semibold mb-2">Guaranteed Quality</h3>
+              <p class="text-gray-700">
+                All our products are tested and trusted. 100% satisfaction
+                guaranteed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+<!-- CONTACT SECTION -->
+    <section id="contact" class="min-h-screen p-6 bg-green-500 pt-24">
+      <h2 class="text-3xl font-bold text-center text-blue-700 mb-8">
+        Contact Us
+      </h2>
+
+      <!-- Form will go here -->
+
+      <section id="contact" class="bg-blue-50 py-20">
+        <div class="max-w-2xl mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center text-green-700 mb-6">
+            Place Your Order
+          </h2>
+
+          <div>
+            <form
+          
+              action="https://formsubmit.co/jaysomemarket@gmail.com"
+              method="POST"
+              class="bg-white p-6 rounded-xl shadow-md space-y-4"
+            >
+              <!-- Redirect back to the same file -->
+              <input
+                type="hidden"
+                name="_next"
+                value="https://example.com/index.html"
+              />
+              <!-- Disable CAPTCHA -->
+              <input type="hidden" name="_captcha" value="false" />
+              <!-- Name -->
+              <div>
+                <label class="block font-medium text-gray-700 mb-1"
+                  >Your Name</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  class="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="Full name"
+                />
+              </div>
+              <!-- Email -->
+              <div>
+                <label class="block font-medium text-gray-700 mb-1"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <!-- Phone -->
+              <div>
+                <label class="block font-medium text-gray-700 mb-1"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  class="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="+1234567890"
+                />
+              </div>
+              <!-- Product Selection -->
+              <div>
+                <label class="block font-medium text-gray-700 mb-1"
+                  >Select Product</label
+                >
+                <select
+                  name="product"
+                  required
+                  class="w-full border border-gray-300 rounded-md p-2"
+                >
+                  <option value="">-- Choose Product --</option>
+                  <option value="PMC PRESSURE COOKER">PMC PRESSURE COOKER</option>
+                  <option value="EUROPE ONE PRESSURE COOKER">  EUROPE ONE PRESSURE COOKER</option>
+                  <option value="BRAVO PRESSURE COOKER">BRAVO PRESSURE COOKER</option>
+                  <option value="PMC BLENDER">PMC BLENDER</option>
+                  <option value="PMC GAS COOKER">PMC GAS COOKER</option>
+                  <option value="INBOX HEAVY BLENDER">INBOX HEAVY BLENDER</option>
+                </select>
+              </div>
+              <!-- Quantity -->
+              <div>
+                <label class="block font-medium text-gray-700 mb-1"
+                  >Quantity</label
+                >
+                <input
+                  type="number"
+                  name="quantity"
+                  required
+                  min="1"
+                  class="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="1"
+                />
+              </div>
+              <!-- Location -->
+              <label>Your Current Location Now</label><br />
+              <input
+                type="text"
+                name="location"
+                placeholder="e.g. Mbezi, Dar es Salaam"
+                class="w-full border border-gray-300 rounded-md p-2"
+                required
+              /><br /><br />
+              <!-- Optional message -->
+              <div>
+                <label class="block font-medium text-gray-700 mb-1"
+                  >Additional Message (Optional)</label
+                >
+                <textarea
+                  name="message"
+                  rows="4"
+                  class="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="Any extra info?"
+                ></textarea>
+              </div>
+              <!-- Submit -->
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="bg-green-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-700 transition"
+                >
+                  Submit Order
+                </button>
+              </div>
+              
+
+ 
+              
+              
+            </form>
+          </div>
+        </div>
+      </section>
+    </section>
+
+<!-- FAQ Section -->
+<section id="faq" class="min-h-screen p-6 bg-blue-200 pt-24">
+  <h2 class="text-3xl font-bold text-center text-blue-700 mb-10">
+    Frequently Asked Questions
+  </h2>
+
+       
+          <div class="max-w-3xl mx-auto space-y-6 pt-10">
+            <div>
+              <h3 class="text-lg font-semibold text-blue-600">
+                How do I place an order?
+              </h3>
+              <p class="text-gray-700">
+                You can place an order through our contact form by selecting the
+                product and filling out your details.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-blue-600">
+                How long does delivery take?
+              </h3>
+              <p class="text-gray-700">
+                Delivery usually takes 1–3 days depending on your location.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-blue-600">
+                What payment methods are accepted?
+              </h3>
+              <p class="text-gray-700">
+                We accept cash on delivery and mobile money.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-blue-600">
+                Do you deliver nationwide?
+              </h3>
+              <p class="text-gray-700">
+                Yes, we deliver across the country. Contact us if your area isn't
+                listed.
+              </p>
+            </div>
+          </div>
+      
+    
+      <div class="max-w-3xl mx-auto space-y-6 pt-10">
+        <details class="border rounded-lg p-4 bg-white shadow">
+          <summary class="font-semibold cursor-pointer">
+            What is your return policy?
+          </summary>
+          <p class="mt-2 text-gray-700">
+            We accept returns within 30 days of purchase if the product is in
+            its original condition.
+          </p>
+        </details>
+
+        <details class="border rounded-lg p-4 bg-white shadow">
+          <summary class="font-semibold cursor-pointer">
+            Do you offer international shipping?
+          </summary>
+          <p class="mt-2 text-gray-700">
+            Yes, we ship worldwide. Shipping costs and times vary by location.
+          </p>
+        </details>
+
+        <details class="border rounded-lg p-4 bg-white shadow">
+          <summary class="font-semibold cursor-pointer">
+            How can I track my order?
+          </summary>
+          <p class="mt-2 text-gray-700">
+            Once your order ships, you’ll receive an email with tracking
+            details.
+          </p>
+        </details>
+    </section>
+
+    <section id="about" class="py-16 bg-green-50">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-green-700 mb-6">About Us</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          We are a passionate small business founded to bring high-quality
+          products to our community. Our mission is to serve our customers with
+          integrity, honesty, and care. Every product we sell is hand-selected
+          and guaranteed to meet your needs.
+        </p>
+      </div>
+    </section>
+
+    <section id="delivery" class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-blue-700 mb-6">
+          Delivery Information
+        </h2>
+        <p class="text-gray-700 text-lg leading-relaxed">
+          We offer fast and reliable delivery to your door. Most orders are
+          delivered within 1–3 business days. We will contact you after you
+          place your order to confirm the delivery details.
+        </p>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="py-16 bg-green-100">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-green-800 mb-6">How It Works</h2>
+
+        <ol
+          class="list-decimal list-inside text-left space-y-4 text-gray-800 text-lg"
+        >
+          <li>Browse the products you like.</li>
+          <li>Go to the contact form and select the product and quantity.</li>
+          <li>Fill in your contact details and submit the form.</li>
+          <li>
+            We’ll receive your request and get in touch with you to confirm the
+            order.
+          </li>
+          <li>
+            We deliver your product to your address and you pay on delivery.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="social-media" class="py-10 bg-white text-center border-4 border-gray-500">
+      <h2 class="text-2xl font-bold text-blue-600 mb-4">Connect With Us</h2>
+      <div class="flex flex-wrap justify-center space-x-0 sm:space-x-6 gap-4">
+        <a href="https://wa.me/0740302622" target="_blank" class="flex items-center text-green-500 hover:text-green-600 space-x-2">
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.001 2.667C8.64 2.667 2.667 8.64 2.667 16c0 2.84.8 5.478 2.187 7.733L2 30l6.4-2.08A13.3 13.3 0 0 0 16 29.333c7.36 0 13.333-5.973 13.333-13.333 0-7.36-5.973-13.333-13.333-13.333zm0 24.533c-2.28 0-4.44-.64-6.32-1.76l-.453-.28-3.8 1.227 1.24-3.693-.293-.48a11.216 11.216 0 0 1-1.72-5.987c0-6.187 5.026-11.213 11.213-11.213s11.213 5.026 11.213 11.213-5.026 11.213-11.213 11.213zm6.533-8.76c-.36-.187-2.133-1.053-2.466-1.173-.333-.12-.573-.187-.813.187s-.933 1.173-1.146 1.413c-.213.24-.4.267-.76.093-.36-.173-1.52-.56-2.893-1.786a10.812 10.812 0 0 1-2.013-2.48c-.213-.36-.013-.56.16-.747.16-.16.36-.4.547-.6.187-.213.253-.36.38-.6.127-.24.06-.44-.027-.6-.093-.16-.813-1.96-1.113-2.68-.293-.693-.587-.6-.813-.6-.213 0-.467-.027-.72-.027s-.667.093-1.013.467c-.347.373-1.32 1.293-1.32 3.16 0 1.867 1.353 3.68 1.54 3.933.187.253 2.66 4.253 6.44 5.947.9.387 1.6.613 2.147.787.9.28 1.72.24 2.36.147.72-.107 2.133-.867 2.433-1.707.293-.827.293-1.533.213-1.68-.08-.147-.293-.24-.613-.387z"/>
+          </svg> Whatsapp
+        </a>
+        
+       
+        <a href="https://instagram.com/jaysomemarket" target="_blank" class="flex items-center text-red-500 hover:text-red-600 space-x-2">
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.75 2C5.126 2 3 4.126 3 6.75v10.5C3 19.874 5.126 22 7.75 22h8.5C18.874 22 21 19.874 21 17.25V6.75C21 4.126 18.874 2 16.25 2h-8.5zM12 8.25a3.75 3.75 0 1 1 0 7.5 3.75 3.75 0 0 1 0-7.5zm0 1.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5zm5.25-2.625a.875.875 0 1 1 0 1.75.875.875 0 0 1 0-1.75zM5.5 6.75a2.25 2.25 0 0 1 2.25-2.25h8.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-8.5a2.25 2.25 0 0 1-2.25-2.25V6.75z"/>
+          </svg>
+          Instagram
+        </a>
+        
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-blue-500 text-white p-6 text-center space-x-10">
+      <div
+        class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+      >
+        <!-- Copyright Notice -->
+        <p class="text-lg text-center md:text-left">
+          &copy; 2025 Jaysome Market. All rights reserved.
+        </p>
+        <!-- Contact Links -->
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-center">
+          <!-- Address Link -->
+          <a
+            href="https://www.google.com/maps/place/ dar es salaam -kariakoo Muheza & Masasi street" 
+            target="_blank"
+            class="hover:underline text-white"
+          >
+            📍 Our Address
+          </a>
+          <!-- Email Link -->
+          <a
+          href="mailto:moshidaniel09@gmail.com?subject=Inquiry%20from%20Jaysome%20Market%20Website"
+            class="hover:underline text-white"
+          >
+            ✉️ Email Us
+          </a>
+          <!-- Phone Link -->
+          <a
+            href="tel:+255655251738"
+            class="hover:underline text-white"
+          >
+            ☎️ Call Us
+          </a>
+        </div>
+      </div>
+      <!-- Back to Top Button -->
+      <a
+        href="#top"
+        class="fixed bottom-6 right-6 bg-green-600 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg z-50 transition duration-300"
+      >
+        ⬆️
+      </a>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Mobile menu toggle
+        const btn = document.getElementById("menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        const openIcon = document.getElementById("menu-open");
+        const closeIcon = document.getElementById("menu-close");
+    
+        if (btn && menu && openIcon && closeIcon) {
+          btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+            openIcon.classList.toggle("hidden");
+            closeIcon.classList.toggle("hidden");
+          });
+    
+          // Close menu when a link is clicked (mobile)
+          document.querySelectorAll("#mobile-menu a").forEach((link) => {
+            link.addEventListener("click", () => {
+              menu.classList.add("hidden");
+              openIcon.classList.remove("hidden");
+              closeIcon.classList.add("hidden");
+            });
+          });
+        }
+    
+        // Form Submission Alert
+        const form = document.querySelector("form");
+        const navNotification = document.getElementById("nav-notification");
+    
+        if (form) {
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault(); // Prevent default form submission
+    
+            const formData = new FormData(form);
+    
+            try {
+              // Submit the form data to FormSubmit.co
+              const response = await fetch("https://formsubmit.co/ajax/jaysomemarket@gmail.com",  {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: JSON.stringify(Object.fromEntries(formData)),
+              });
+    
+              if (response.ok) {
+                // Show the notification on the navigation bar
+                navNotification.classList.remove("hidden");
+    
+                // Reset the form
+                form.reset();
+    
+                // Hide the notification after 3 seconds
+                setTimeout(() => {
+                  navNotification.classList.add("hidden");
+                }, 3000);
+              } else {
+                alert("Failed to submit form.");
+              }
+            } catch (error) {
+              alert("Error submitting form.");
+              console.error(error);
+            }
+          });
+        }
+      });
+    </script>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.getElementById("slider");
+  const prevButton = document.getElementById("prev-slide");
+  const nextButton = document.getElementById("next-slide");
+  const dots = document.querySelectorAll(".cursor-pointer");
+  let currentIndex = 0;
+  const totalSlides = 3;
+
+  // Function to update slider position
+  function updateSlider(index) {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active-dot", i === index);
+    });
+  }
+
+  // Event listeners for navigation arrows
+  prevButton.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider(currentIndex);
+  });
+
+  nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider(currentIndex);
+  });
+
+  // Event listeners for pagination dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      currentIndex = index;
+      updateSlider(currentIndex);
+    });
+  });
+
+  // Auto-sliding functionality
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider(currentIndex);
+  }, 5000); // 5 seconds interval
+});
+    </script>
+  </body>
+</html>
